@@ -18,6 +18,7 @@ def imshow(img_original, img_final, interpolation_type, steps):
     axis[1].imshow(np.transpose(npimg_final, (1, 2, 0)))
     axis[1].set_title(f'Img {steps} rotations')
     fig.suptitle(f'Rotations with {interpolation_type}', fontsize=16)
+    plt.savefig(f'./results/plot_images_{interpolation_type.__str__().split(".")[1].lower()}_s{steps}', dpi=100)
     plt.show()
 
 
@@ -40,11 +41,12 @@ def make_interpolation(input_image, output_image, interpolation_type, steps):
     plt.title('Energy drop for each iteration')
     plt.xlabel('Iteration')
     plt.ylabel('Energy')
+    plt.savefig(f'./results/plot_energy_drop_{interpolation_type.__str__().split(".")[1].lower()}_s{steps}', dpi=100)
     plt.show()
 
 
 if __name__ == '__main__':
-    im = Image.open('./image.png')
+    im = Image.open('images/image.png')
 
     transform = transforms.Compose([transforms.ToTensor()])
     im = transform(im)
